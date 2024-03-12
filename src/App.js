@@ -12,12 +12,21 @@ const towary = [
 
 function App() {
   let [sztuki, setSztuki] = useState(Array(3).fill(0));
+
+  function klik(nr)
+  {
+    let k = sztuki.slice();
+    k[nr]++;
+    setSztuki(k);
+    towary[nr].sztuk = k[nr];
+  }
+
   return (
     <div className="App">
       <h1>Sklep</h1>
-      <Owoc owoc={towary[0]} />
-      <Owoc owoc={towary[1]} />
-      <Owoc owoc={towary[2]} />
+      <Owoc owoc={towary[0]} f={()=>klik(0)} />
+      <Owoc owoc={towary[1]} f={()=>klik(1)}/>
+      <Owoc owoc={towary[2]} f={()=>klik(2)}/>
       <div className='oblicz'>
         <p>{towary[0].nazwa} szt: {towary[0].sztuk}, 
           wartość: {towary[0].sztuk*towary[0].cena}</p>
